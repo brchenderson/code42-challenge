@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {Button, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Button, Col, ListGroup, ListGroupItem} from 'react-bootstrap';
 
 export default class Detail extends Component {
   state = {
@@ -31,10 +31,6 @@ export default class Detail extends Component {
       });
     })
   }
-  getReadableDate(date){
-    let d = new Date(date);
-    console.log( (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear());
-  }
   render(){
     var repos = this.state.repos.map((repo, i)=>{
       return <ListGroupItem><a href={repo.url}>{repo.name}</a></ListGroupItem>
@@ -55,10 +51,13 @@ export default class Detail extends Component {
       <a href="{this.state.email}">{this.state.user.email}</a>
       <p>Joined Github: {readableDate.getMonth()+1}-{readableDate.getDate()}-{readableDate.getFullYear()}</p>
       <h2>Repositories:</h2>
+      <Col xs={8}>
       <ListGroup>
         {repos}
       </ListGroup>
       <Link to="/"><Button bsSize="large" bStyle="primary">Back</Button></Link>
+      </Col>
+
     </div>
     )
   }
